@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 16, 2017 3:07:23 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="CanShop.POJOS.Products" table="products" catalog="canshop" optimistic-lock="version">
+        <id name="productId" type="java.lang.Integer">
+            <column name="Product_Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="category" class="CanShop.POJOS.Category" fetch="select">
+            <column name="Category_Category_Id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="subcategory" class="CanShop.POJOS.Subcategory" fetch="select">
+            <column name="SubCategory_SubCategory_Id" />
+        </many-to-one>
+        <property name="productName" type="string">
+            <column name="Product_Name" length="45" not-null="true" />
+        </property>
+        <property name="productPrice" type="int">
+            <column name="Product_Price" not-null="true" />
+        </property>
+        <property name="productNprice" type="java.lang.Integer">
+            <column name="Product_NPrice" />
+        </property>
+        <property name="productAmount" type="int">
+            <column name="Product_Amount" not-null="true" />
+        </property>
+        <property name="productViewer" type="int">
+            <column name="Product_Viewer" not-null="true" />
+        </property>
+        <property name="productOrdersNo" type="int">
+            <column name="Product_OrdersNo" not-null="true" />
+        </property>
+        <property name="productDescription" type="string">
+            <column name="Product_description" length="1000" />
+        </property>
+        <property name="productBrand" type="string">
+            <column name="Product_Brand" length="45" />
+        </property>
+        <property name="productDate" type="date">
+            <column name="Product_Date" length="10" />
+        </property>
+        <property name="productDimentions" type="string">
+            <column name="Product_Dimentions" length="45" />
+        </property>
+        <property name="productSerialNo" type="string">
+            <column name="Product_SerialNo" length="45" />
+        </property>
+        <property name="productHotOffer" type="java.lang.Boolean">
+            <column name="Product_HotOffer" />
+        </property>
+        <property name="productArabicName" type="string">
+            <column name="Product_Arabic_Name" length="45" not-null="true" />
+        </property>
+        <property name="productArabicDescription" type="string">
+            <column name="Product_Arabic_description" length="1000" />
+        </property>
+        <property name="productArabicBrand" type="string">
+            <column name="Product_Arabic_Brand" length="45" />
+        </property>
+        <property name="productFeatured" type="java.lang.Boolean">
+            <column name="Product_Featured" />
+        </property>
+        <set name="adminOrderedProductses" table="admin_ordered_products" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Products_Product_Id" not-null="true" />
+            </key>
+            <one-to-many class="CanShop.POJOS.AdminOrderedProducts" />
+        </set>
+        <set name="orderedProudctses" table="ordered_proudcts" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="OrderedProducts_Product_Id" not-null="true" />
+            </key>
+            <one-to-many class="CanShop.POJOS.OrderedProudcts" />
+        </set>
+    </class>
+</hibernate-mapping>

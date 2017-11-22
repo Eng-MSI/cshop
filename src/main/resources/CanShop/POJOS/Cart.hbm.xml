@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 16, 2017 3:07:23 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="CanShop.POJOS.Cart" table="cart" catalog="canshop" optimistic-lock="version">
+        <id name="cartId" type="java.lang.Integer">
+            <column name="Cart_Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="CanShop.POJOS.User" fetch="select">
+            <column name="Cart_User_Id" not-null="true" />
+        </many-to-one>
+        <set name="orderedProudctses" table="ordered_proudcts" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="OrderedProducts_Cart_Id" not-null="true" />
+            </key>
+            <one-to-many class="CanShop.POJOS.OrderedProudcts" />
+        </set>
+    </class>
+</hibernate-mapping>

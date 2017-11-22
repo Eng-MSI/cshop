@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 16, 2017 3:07:23 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="CanShop.POJOS.AdminOrderedProducts" table="admin_ordered_products" catalog="canshop" optimistic-lock="version">
+        <id name="adminOrderedProductsId" type="java.lang.Integer">
+            <column name="AdminOrderedProducts_Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="products" class="CanShop.POJOS.Products" fetch="select">
+            <column name="Products_Product_Id" not-null="true" />
+        </many-to-one>
+        <property name="adminOrderedProductsUserName" type="string">
+            <column name="Admin_Ordered_Products_UserName" length="45" not-null="true" />
+        </property>
+        <property name="adminOrderedProductsDate" type="string">
+            <column name="Admin_Ordered_Products_Date" length="45" not-null="true" />
+        </property>
+        <property name="adminOrderedProductsAmount" type="string">
+            <column name="Admin_Ordered_Products_amount" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

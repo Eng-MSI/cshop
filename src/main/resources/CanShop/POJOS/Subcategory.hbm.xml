@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 16, 2017 3:07:23 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="CanShop.POJOS.Subcategory" table="subcategory" catalog="canshop" optimistic-lock="version">
+        <id name="subCategoryId" type="java.lang.Integer">
+            <column name="SubCategory_Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="category" class="CanShop.POJOS.Category" fetch="select">
+            <column name="Category_Category_Id" not-null="true" />
+        </many-to-one>
+        <property name="subCategoryName" type="string">
+            <column name="SubCategory_Name" length="45" not-null="true" />
+        </property>
+        <property name="subCategoryArabicName" type="string">
+            <column name="SubCategory_Arabic_Name" length="45" not-null="true" />
+        </property>
+        <set name="productses" table="products" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SubCategory_SubCategory_Id" />
+            </key>
+            <one-to-many class="CanShop.POJOS.Products" />
+        </set>
+    </class>
+</hibernate-mapping>
