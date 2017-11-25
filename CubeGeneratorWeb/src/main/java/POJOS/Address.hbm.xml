@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="POJOS.Address" table="Address">
+		<id name="addressId">
+			<column name="idAddress"></column>
+			<generator class="identity"></generator>
+		</id>
+		<property name="addressCountry" type="string">
+			<column name="AddressCountry" length="45" not-null="true"></column>
+		</property>
+		<property name="addressCity" type="string">
+			<column name="AddressCity" length="45" not-null="true"></column>
+		</property>
+		<set name="users" table="User">
+			<key>
+				<column name="Address_idAddress" not-null="true"></column>
+			</key>
+			<one-to-many class="POJOS.User" />
+		</set>
+
+	</class>
+</hibernate-mapping>
